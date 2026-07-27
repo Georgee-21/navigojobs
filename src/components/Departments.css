@@ -1,0 +1,67 @@
+.nj-dept-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.nj-dept-card {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 24px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.nj-dept-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.nj-dept-code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--steel);
+  border: 1px solid var(--line);
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.nj-dept-title {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.nj-dept-ge {
+  font-size: 13px;
+  color: var(--steel);
+  margin-bottom: 14px;
+}
+
+.nj-dept-roles {
+  font-size: 12px;
+  color: var(--steel);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  min-height: 36px;
+}
+
+.nj-dept-open {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--foam);
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+@media (max-width: 860px) {
+  .nj-dept-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

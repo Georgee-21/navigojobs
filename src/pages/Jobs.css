@@ -1,0 +1,297 @@
+.nj-jobs {
+  padding-top: 56px;
+}
+
+.nj-jobs-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 340px;
+  border-bottom: 1px solid var(--line);
+}
+
+.nj-jobs-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+}
+
+.nj-jobs-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-overlay);
+  pointer-events: none;
+}
+
+.nj-jobs-hero-inner {
+  height: 460px;
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 90px 32px 56px;
+}
+
+.nj-jobs-hero-panel {
+  max-width: 560px;
+  padding: 24px 28px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  background: color-mix(in srgb, var(--bg) 38%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.55);
+}
+
+.nj-jobs-hero-title {
+  font-size: 36px;
+}
+
+.nj-jobs-back {
+  display: inline-block;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.nj-jobs-back:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .nj-jobs-hero {
+    min-height: 280px;
+  }
+
+  .nj-jobs-hero-panel {
+    padding: 20px;
+  }
+}
+
+.nj-jobs-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.nj-jobs-search {
+  flex: 1 1 260px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px 16px;
+  color: var(--ink);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.nj-jobs-search::placeholder {
+  color: var(--steel);
+}
+
+.nj-jobs-search:focus {
+  border-color: var(--accent);
+}
+
+.nj-jobs-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nj-jobs-chip {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--steel);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.nj-jobs-chip:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.nj-jobs-chip-active {
+  border-color: var(--accent);
+  background: var(--accent-gradient);
+  color: #ffffff;
+}
+
+.nj-jobs-count {
+  font-size: 13px;
+  color: var(--foam);
+  margin-bottom: 24px;
+}
+
+.nj-jobs-empty {
+  padding: 48px 0;
+  text-align: center;
+}
+
+.nj-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.nj-job-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.nj-job-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.nj-job-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.nj-job-urgent {
+  font-size: 11px;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.nj-job-top-photo {
+  position: relative;
+  align-items: flex-start;
+  margin: -22px -20px 16px;
+  padding: 16px 20px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+}
+
+.nj-job-top-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.603) 0%,
+    rgba(0, 0, 0, 0.05) 55%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+}
+
+.nj-job-top-photo > * {
+  position: relative;
+  z-index: 1;
+}
+
+.nj-job-top-photo .nj-dept-code {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.35);
+  margin-bottom: 0;
+}
+
+.nj-job-top-photo .nj-job-urgent {
+  background: #ff6b6b;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.6);
+}
+
+.nj-job-rank {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.nj-job-vessel {
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.nj-job-agency {
+  font-size: 12px;
+  color: var(--steel);
+  margin-bottom: 16px;
+}
+
+.nj-job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.nj-job-meta > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nj-job-meta-label {
+  color: var(--steel);
+}
+
+.nj-job-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.nj-job-posted {
+  font-size: 12px;
+  color: var(--steel);
+}
+
+.nj-job-apply {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+@media (max-width: 960px) {
+  .nj-jobs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .nj-jobs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nj-jobs-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

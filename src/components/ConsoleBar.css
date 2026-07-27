@@ -1,0 +1,38 @@
+.nj-console {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 32px;
+  background: var(--console-bg);
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--steel);
+}
+
+.nj-console-item {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.nj-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--foam);
+  box-shadow: 0 0 6px var(--foam);
+  animation: nj-blink 2s ease-in-out infinite;
+}
+
+@keyframes nj-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (max-width: 860px) {
+  .nj-console {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+}

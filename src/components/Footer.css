@@ -1,0 +1,39 @@
+.nj-footer {
+  padding: 40px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--steel);
+}
+
+.nj-footer .nj-logo span {
+  color: var(--accent);
+}
+
+.nj-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.nj-footer-links a {
+  color: var(--steel);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.nj-footer-links a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .nj-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

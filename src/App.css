@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ---------- Root & theme tokens ---------- */
+.nj-root {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.nj-dark {
+  --bg: #0a1929;
+  --panel: #102538;
+  --line: #1e3a52;
+  --accent: #33a0ff;
+  --accent-soft: #6cbeff;
+  --accent-gradient: linear-gradient(135deg, #33a0ff 0%, #1c6fd1 100%);
+  --foam: #3fa796;
+  --ink: #eef1f4;
+  --steel: #8ca3b8;
+  --console-bg: #081521;
+  --hero-overlay: linear-gradient(180deg, rgba(10,25,41,0.6) 0%, rgba(10,25,41,0.25) 45%, rgba(10,25,41,0.92) 100%);
+}
+
+.nj-light {
+  --bg: #eaf3fb;
+  --panel: #ffffff;
+  --line: #c2d9ec;
+  --accent: #0070d1;
+  --accent-soft: #0058a3;
+  --accent-gradient: linear-gradient(135deg, #0070d1 0%, #004c93 100%);
+  --foam: #146b5c;
+  --ink: #0e2436;
+  --steel: #52708a;
+  --console-bg: #dcebf8;
+  --hero-overlay: linear-gradient(180deg, rgba(234, 243, 251, 0.281) 0%, rgba(234, 243, 251, 0.082) 50%, rgba(234, 243, 251, 0.685) 100%);
+}
+
+.nj-root { background: var(--bg); color: var(--ink); }
+.nj-root * { box-sizing: border-box; }
+
+/* ---------- Shared typography ---------- */
+.nj-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+.nj-display { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+
+/* ---------- Shared section scaffolding ---------- */
+.nj-section { padding: 90px 32px; max-width: 1180px; margin: 0 auto; }
+.nj-section-head { margin-bottom: 56px; max-width: 560px; }
+.nj-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--foam);
+  margin-bottom: 12px;
+  letter-spacing: 0.08em;
+}
+.nj-h2 { font-size: 32px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
+.nj-p { color: var(--steel); font-size: 15px; line-height: 1.6; }
+
+/* ---------- Shared buttons ---------- */
+.nj-btn-primary {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+  box-shadow: 0 6px 18px -6px var(--accent);
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.nj-btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+.nj-btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 14px 24px;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.nj-btn-secondary:hover { border-color: var(--foam); }
+
+.nj-btn-ghost {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 9px 18px;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.nj-btn-ghost:hover { border-color: var(--accent); }

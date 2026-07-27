@@ -1,0 +1,57 @@
+.nj-band {
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.nj-band-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+}
+
+.nj-band-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-overlay);
+  pointer-events: none;
+}
+
+.nj-band-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 70px 32px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.nj-band-panel {
+  padding: 28px 32px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  background: color-mix(in srgb, var(--bg) 38%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.55);
+}
+
+.nj-band-panel .nj-sub {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+@media (max-width: 860px) {
+  .nj-band-inner {
+    grid-template-columns: 1fr;
+  }
+}

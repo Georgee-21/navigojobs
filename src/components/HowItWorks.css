@@ -1,0 +1,33 @@
+.nj-stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.nj-stage {
+  background: var(--bg);
+  padding: 32px;
+}
+
+.nj-stage-leg {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.nj-stage-title {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 860px) {
+  .nj-stages {
+    grid-template-columns: 1fr;
+  }
+}
