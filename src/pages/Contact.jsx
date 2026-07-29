@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Contact.css";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import CaptainViewImg from "../assets/captain-view.jpg";
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -12,7 +13,7 @@ export default function Contact() {
       <header className="nj-jobs-hero nj-contact-hero">
         <div
           className="nj-jobs-hero-bg"
-          style={{ backgroundImage: "url(/captain-view.jpg)" }}
+          style={{ backgroundImage: `url(${CaptainViewImg})`,backgroundPosition: "top 75%" }}
         />
         <div className="nj-jobs-hero-overlay" />
         <div className="nj-jobs-hero-inner">

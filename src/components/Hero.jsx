@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Hero.css";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import BackGround from "../assets/hero-background.mp4"
 
 const ports = [
   { x: 30, y: 330, label: "DK" },
@@ -21,7 +22,7 @@ export default function Hero() {
         muted
         loop
         playsInline
-        src="/hero-background.mp4"
+        src={BackGround}
       />
       <div className="nj-hero-overlay" />
       {/* <div className="nj-hero-grid" /> */}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Jobs.css";
 import "./Forms.css";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import SeafarerImg from "../assets/seafarer.jpg";
 
 export default function SeafarerRegister() {
   const { t } = useLanguage();
@@ -19,7 +20,7 @@ export default function SeafarerRegister() {
       <header className="nj-jobs-hero">
         <div
           className="nj-jobs-hero-bg"
-          style={{ backgroundImage: "url(/seafarer.jpg)", backgroundPosition: "center 40%" }}
+          style={{ backgroundImage: `url(${SeafarerImg})`, backgroundPosition: "center 40%" }}
         />
         <div className="nj-jobs-hero-overlay" />
         <div className="nj-jobs-hero-inner">

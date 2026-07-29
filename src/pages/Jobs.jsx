@@ -3,8 +3,19 @@ import { Link, useSearchParams } from "react-router-dom";
 import "./Jobs.css";
 import { jobs, departments } from "../data.js";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import ContainerShipImg from "../assets/container-ship.jpg";
+import ComandTankerImg from "../assets/comand-tanker.jpg";
+import DryCargoImg from "../assets/dry-cargo.jpg";
+import ChemicalTankerImg from "../assets/chemicer-tanker.jpg"
+import PassengerLinerImg from "../assets/passenger-liner.jpg"
+import PassengerLiner2Img from "../assets/passenger-liner-2.jpg"
+import ContainerShip2Img from "../assets/container-ship.jpg"
+import DryCargo2Img from "../assets/dry-cargo.jpg"
+import ComandTanker2Img from "../assets/comand-tanker.jpg"
+import CaptainViewImg from "../assets/captain-view.jpg";
 
-const jobCardImages = ["/container-ship.jpg", "/comand-tanker.jpg", "/dry-cargo.jpg", "/container-ship.jpg", "/chemicer-tanker.jpg", "/passenger-liner.jpg", "/passenger-liner.jpg", "/passenger-liner-2.jpg", "/container-ship.jpg", "/dry-cargo.jpg", "/comand-tanker.jpg"];
+
+const jobCardImages = [ContainerShipImg, ComandTankerImg, DryCargoImg, ContainerShipImg, ChemicalTankerImg, PassengerLinerImg, PassengerLinerImg, PassengerLiner2Img, ContainerShip2Img, DryCargo2Img, ComandTanker2Img];
 
 const jobImageById = Object.fromEntries(
   jobs.map((job, i) => [job.id, jobCardImages[i]])
@@ -48,7 +59,7 @@ export default function Jobs() {
       <header className="nj-jobs-hero">
         <div
           className="nj-jobs-hero-bg"
-          style={{ backgroundImage: "url(/captain-view.jpg)" }}
+          style={{ backgroundImage: `url(${CaptainViewImg})` }}
         />
         <div className="nj-jobs-hero-overlay" />
         <div className="nj-jobs-hero-inner">

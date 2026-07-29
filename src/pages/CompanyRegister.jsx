@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Jobs.css";
 import "./Forms.css";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import CompanyRegisterHeroImg  from "../assets/company-register-hero.jpg";
 
 export default function CompanyRegister() {
   const { t } = useLanguage();
@@ -19,7 +20,7 @@ export default function CompanyRegister() {
       <header className="nj-jobs-hero">
         <div
           className="nj-jobs-hero-bg"
-          style={{ backgroundImage: "url(/company-register-hero.jpg)" }}
+          style={{ backgroundImage: `url(${CompanyRegisterHeroImg})` }}
         />
         <div className="nj-jobs-hero-overlay" />
         <div className="nj-jobs-hero-inner">

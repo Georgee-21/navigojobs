@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./EmployerBand.css";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import CaptainViewImg from "../assets/captain-view.jpg";
 
 export default function EmployerBand() {
   const { t } = useLanguage();
@@ -10,7 +11,7 @@ export default function EmployerBand() {
     <section className="nj-band" id="employers">
       <div
         className="nj-band-bg"
-        style={{ backgroundImage: "url(/captain-view.jpg)" }}
+        style={{ backgroundImage: `url(${CaptainViewImg})` }}
       />
       <div className="nj-band-overlay" />
       <div className="nj-band-inner">

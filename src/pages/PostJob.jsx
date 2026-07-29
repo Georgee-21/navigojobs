@@ -4,6 +4,7 @@ import "./Jobs.css";
 import "./Forms.css";
 import { departments } from "../data.js";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import SailorImg from "../assets/sailor.jpg";
 
 export default function PostJob() {
   const { t, lang } = useLanguage();
@@ -20,7 +21,7 @@ export default function PostJob() {
       <header className="nj-jobs-hero">
         <div
           className="nj-jobs-hero-bg"
-          style={{ backgroundImage: "url(/sailor.jpg)" }}
+           style={{ backgroundImage: `url(${SailorImg})`, transform: "scaleX(-1)" }}
         />
         <div className="nj-jobs-hero-overlay" />
         <div className="nj-jobs-hero-inner">
