@@ -1,0 +1,284 @@
+/* =========================================================
+   მთავარი გვერდი — ჰერო, "როგორ მუშაობს", დეპარტამენტები,
+   დამსაქმებლის ზოლი
+   ========================================================= */
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 32px 60px;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-overlay);
+  pointer-events: none;
+  transition: background 0.25s ease;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-text { padding: 28px 32px; }
+
+.hero-title {
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 600;
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+}
+
+.hero-title em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 0;
+}
+
+.stat-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 22px;
+  color: var(--ink);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--steel);
+  margin-top: 2px;
+}
+
+/* ---------- Route chart (signature graphic) ---------- */
+.route-map {
+  position: relative;
+  height: 380px;
+}
+
+.route-map svg { width: 100%; height: 100%; }
+
+.route-line {
+  stroke: var(--accent);
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw 2.2s ease-out forwards;
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.port-ring {
+  stroke: var(--foam);
+  animation: pulse 2.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.port-dot { fill: var(--foam); }
+
+.port-label {
+  fill: var(--steel);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(0.9); opacity: 0; }
+}
+
+.ship-hull { fill: var(--ink); }
+.ship-mast { stroke: var(--ink); }
+
+.ship { animation: bob 3.4s ease-in-out infinite; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ---------- How it works ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  background: var(--bg);
+  padding: 32px;
+}
+
+.step-number {
+  color: var(--accent);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.step-title {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin: 0 0 10px;
+}
+
+/* ---------- Departments ---------- */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.dept-card {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 24px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.dept-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.dept-title {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.dept-name {
+  font-size: 13px;
+  color: var(--steel);
+  margin-bottom: 14px;
+}
+
+.dept-roles {
+  font-size: 12px;
+  color: var(--steel);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  min-height: 36px;
+}
+
+.dept-jobs {
+  font-size: 13px;
+  color: var(--foam);
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+/* ---------- Employer band ---------- */
+.employers {
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.employers-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("../assets/images/captain-view.jpg") center 20% / cover no-repeat;
+}
+
+.employers-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-overlay);
+  pointer-events: none;
+}
+
+.employers-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 70px 32px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.employers-text { padding: 28px 32px; }
+
+.employers-text .subtitle {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .hero { padding: 48px 20px 40px; }
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-title { font-size: 36px; }
+  .hero-text { padding: 20px; }
+  .route-map { height: 260px; }
+
+  .steps { grid-template-columns: 1fr; }
+  .dept-grid { grid-template-columns: 1fr 1fr; }
+
+  .employers-content { grid-template-columns: 1fr; padding: 56px 20px; }
+  .employers-text { padding: 20px; }
+}
+
+@media (max-width: 600px) {
+  .route-map { display: none; } /* პატარა ეკრანზე დეკორატიული გრაფიკა იმალება */
+}
+
+@media (max-width: 480px) {
+  .dept-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 20px; }
+  .hero-buttons > * { flex: 1 1 100%; }
+}

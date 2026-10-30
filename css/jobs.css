@@ -1,0 +1,211 @@
+/* =========================================================
+   ვაკანსიების გვერდი — ძებნა, ფილტრები, ბარათები
+   ========================================================= */
+
+.jobs-section { padding-top: 56px; }
+
+.jobs-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.jobs-search {
+  flex: 1 1 260px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px 16px;
+  color: var(--ink);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.jobs-search::placeholder { color: var(--steel); }
+.jobs-search:focus { border-color: var(--accent); }
+
+.jobs-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--steel);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.filter-btn[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-gradient);
+  color: #ffffff;
+}
+
+.jobs-count {
+  font-size: 13px;
+  color: var(--foam);
+  margin-bottom: 24px;
+}
+
+.jobs-empty {
+  padding: 48px 0;
+  text-align: center;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.job-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.job-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.job-image {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: -22px -20px 16px;
+  padding: 16px 20px;
+  min-height: 200px;
+  background-color: var(--line);
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+}
+
+.job-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.05) 55%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+.job-image > * {
+  position: relative;
+  z-index: 1;
+}
+
+.job-image .dept-code {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.35);
+  margin-bottom: 0;
+}
+
+.job-urgent {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--danger);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.6);
+}
+
+.job-title {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 6px;
+}
+
+.job-ship {
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.job-company {
+  font-size: 12px;
+  color: var(--steel);
+  margin-bottom: 16px;
+}
+
+.job-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  margin: 0 0 16px;
+  font-size: 13px;
+}
+
+.job-details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.job-details dt { color: var(--steel); }
+.job-details dd { margin: 0; text-align: right; }
+
+.job-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.job-date {
+  font-size: 12px;
+  color: var(--steel);
+}
+
+.job-apply {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+@media (max-width: 960px) {
+  .jobs-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .jobs-grid { grid-template-columns: 1fr; }
+
+  .jobs-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .jobs-search { flex-basis: auto; }
+}
