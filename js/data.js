@@ -1,10 +1,3 @@
-/* =========================================================
-   NavigoJobs — მონაცემები
-   დეპარტამენტები, ვაკანსიები და "როგორ მუშაობს" ეტაპები.
-   ჩვეულებრივი <script> ფაილია (არა მოდული), ამიტომ const-ები
-   ხელმისაწვდომია სხვა სკრიპტებისთვისაც, რომლებიც მის შემდეგ იტვირთება.
-   ========================================================= */
-
 const departments = [
   {
     code: "DK",
@@ -14,7 +7,6 @@ const departments = [
       ka: "კაპიტანი · მეზღვაური · ბოცმანი",
       en: "Captain · Sailor · Boatswain",
     },
-    open: 24,
   },
   {
     code: "EN",
@@ -24,7 +16,6 @@ const departments = [
       ka: "მთავარი მექანიკოსი · მემანქანე · ელექტრიკოსი",
       en: "Chief Engineer · Motorman · Electrician",
     },
-    open: 31,
   },
   {
     code: "GL",
@@ -34,7 +25,6 @@ const departments = [
       ka: "შეფ-მზარეული · სტიუარდი",
       en: "Chef · Steward",
     },
-    open: 12,
   },
   {
     code: "BR",
@@ -44,7 +34,6 @@ const departments = [
       ka: "სტარშ. თანაშემწე · ნავიგატორი · რადისტი",
       en: "Chief Officer · Navigator · Radio Operator",
     },
-    open: 20,
   },
 ];
 

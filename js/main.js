@@ -1,12 +1,3 @@
-/* =========================================================
-   NavigoJobs — საერთო სკრიპტი (ყველა გვერდზე იტვირთება)
-   - ენის გადართვა (ქართული / English) + შენახვა localStorage-ში
-   - თემის გადართვა (dark / light) + შენახვა
-   - კონსოლის ზოლის GMT საათი
-   - მობილური მენიუ (burger)
-   - შესვლის მოდალური ფანჯარა
-   ========================================================= */
-
 const NJ = (function () {
   "use strict";
 
@@ -14,9 +5,6 @@ const NJ = (function () {
   const STORAGE_THEME = "nj-theme";
   const root = document.documentElement;
 
-  /* ---------- localStorage დამხმარეები ----------
-     ზოგ ბრაუზერში (პრივატული რეჟიმი, file://) localStorage შეიძლება
-     მიუწვდომელი იყოს — ამიტომ try/catch-ში ვახვევთ. */
   function readStore(key, fallback) {
     try {
       return localStorage.getItem(key) || fallback;
@@ -29,16 +17,61 @@ const NJ = (function () {
     try {
       localStorage.setItem(key, value);
     } catch (e) {
-      /* შენახვა ვერ მოხერხდა — გვერდი მაინც მუშაობს */
+
     }
   }
 
   let lang = readStore(STORAGE_LANG, "ka") === "en" ? "en" : "ka";
   let theme = readStore(STORAGE_THEME, "dark") === "light" ? "light" : "dark";
 
-  /* ---------- თარგმანი ----------
-     t("hero.titleEm") → translations[lang].hero.titleEm
-     მასივის ინდექსიც მუშაობს: t("nav.links.0.label") */
+  const LAYOUT = {
+    header: `
+    <div class="topbar text-mono">
+      <div class="topbar-item">
+        <span class="topbar-dot" aria-hidden="true"></span>
+        <span>GMT <time data-clock>00:00:00</time></span>
+      </div>
+      <div class="topbar-item"><span data-i18n="consoleBar.location"></span></div>
+      <div class="topbar-item"><span data-i18n="consoleBar.stats"></span></div>
+    </div>
+    <nav class="navbar" aria-label="Main">
+      <a href="index.html" class="logo">NAVIGO<span>JOBS</span></a>
+      <div class="navbar-right">
+        <div class="navbar-links" id="nj-navlinks">
+        <a href="jobs.html" data-i18n="nav.links.0.label"></a>
+        <a href="index.html#employers" data-i18n="nav.links.1.label"></a>
+        <a href="index.html#how-it-works" data-i18n="nav.links.2.label"></a>
+        <a href="contact.html" data-i18n="nav.links.3.label"></a>
+        </div>
+        <div class="navbar-actions">
+          <button type="button" class="lang-btn text-mono" data-lang-toggle data-i18n-aria-label="ui.langToggle" title="ქართული / English">EN</button>
+          <button type="button" class="theme-btn" data-theme-toggle data-i18n-aria-label="ui.themeToggle" title="Dark / Light">☾</button>
+          <button type="button" class="menu-btn" data-burger aria-controls="nj-navlinks" aria-expanded="false" data-i18n-aria-label="nav.menuLabel">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>`,
+    footer: `
+    <footer class="footer">
+      <a href="index.html" class="logo">NAVIGO<span>JOBS</span></a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="jobs.html" data-i18n="nav.links.0.label"></a>
+        <a href="index.html#employers" data-i18n="nav.links.1.label"></a>
+        <a href="index.html#how-it-works" data-i18n="nav.links.2.label"></a>
+        <a href="contact.html" data-i18n="nav.links.3.label"></a>
+        <a href="privacy.html" data-i18n="footer.privacy"></a>
+      </nav>
+      <div class="text-mono" data-i18n="footer.copy"></div>
+    </footer>`,
+  };
+
+  function renderLayout() {
+    document.querySelectorAll("[data-layout]").forEach(function (el) {
+      el.outerHTML = LAYOUT[el.dataset.layout];
+    });
+  }
+
   function t(path) {
     return path.split(".").reduce(function (obj, key) {
       return obj == null ? undefined : obj[key];
@@ -50,15 +83,18 @@ const NJ = (function () {
 
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       const value = t(el.dataset.i18n);
-      if (typeof value === "string") el.textContent = value;
+      if (typeof value === "string") el.textContent = value.replace("{open}", jobs.length);
     });
 
-    // ატრიბუტების თარგმანი: data-i18n-placeholder, data-i18n-aria-label, data-i18n-title
     ["placeholder", "aria-label", "title"].forEach(function (attr) {
       document.querySelectorAll("[data-i18n-" + attr + "]").forEach(function (el) {
         const value = t(el.getAttribute("data-i18n-" + attr));
         if (typeof value === "string") el.setAttribute(attr, value);
       });
+    });
+
+    document.querySelectorAll("[data-open-count]").forEach(function (el) {
+      el.textContent = jobs.length;
     });
 
     const pageKey = document.body.dataset.page;
@@ -67,7 +103,6 @@ const NJ = (function () {
     const langBtn = document.querySelector("[data-lang-toggle]");
     if (langBtn) langBtn.textContent = lang === "ka" ? "EN" : "GE";
 
-    // გვერდის სკრიპტებს (home.js, jobs.js...) ვატყობინებთ, რომ ენა შეიცვალა
     document.dispatchEvent(new CustomEvent("nj:langchange", { detail: { lang: lang } }));
   }
 
@@ -77,7 +112,6 @@ const NJ = (function () {
     applyTranslations();
   }
 
-  /* ---------- თემა ---------- */
   function applyTheme() {
     root.classList.remove("theme-dark", "theme-light");
     root.classList.add("theme-" + theme);
@@ -94,7 +128,6 @@ const NJ = (function () {
     applyTheme();
   }
 
-  /* ---------- კონსოლის საათი (GMT) ---------- */
   function startClock() {
     const el = document.querySelector("[data-clock]");
     if (!el) return;
@@ -105,7 +138,6 @@ const NJ = (function () {
     setInterval(tick, 1000);
   }
 
-  /* ---------- მობილური მენიუ ---------- */
   function initBurger() {
     const burger = document.querySelector("[data-burger]");
     const links = document.getElementById("nj-navlinks");
@@ -133,7 +165,6 @@ const NJ = (function () {
     });
   }
 
-  /* ---------- მიმდინარე გვერდის ბმულის მონიშვნა ---------- */
   function markCurrentLink() {
     const current = location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".navbar-links a").forEach(function (a) {
@@ -142,94 +173,19 @@ const NJ = (function () {
     });
   }
 
-  /* ---------- შესვლის მოდალი ---------- */
-  function initLoginModal() {
-    const overlay = document.getElementById("nj-login");
-    const openBtn = document.querySelector("[data-login-open]");
-    if (!overlay || !openBtn) return;
-
-    const dialog = overlay.querySelector(".modal");
-    const form = overlay.querySelector("form");
-    const success = overlay.querySelector("[data-success]");
-    let lastFocused = null;
-
-    function focusable() {
-      return Array.prototype.filter.call(
-        dialog.querySelectorAll("button, input, a[href]"),
-        function (el) { return el.offsetParent !== null; }
-      );
-    }
-
-    function onKeyDown(e) {
-      if (e.key === "Escape") {
-        close();
-        return;
-      }
-      // Tab ღილაკით ფოკუსი ფანჯრის შიგნით რჩება
-      if (e.key === "Tab") {
-        const items = focusable();
-        if (!items.length) return;
-        const first = items[0];
-        const last = items[items.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    }
-
-    function open() {
-      lastFocused = document.activeElement;
-      form.reset();
-      form.hidden = false;
-      success.hidden = true;
-      dialog.querySelectorAll(".is-touched").forEach(function (el) { el.classList.remove("is-touched"); });
-      overlay.hidden = false;
-      document.body.classList.add("modal-open");
-      document.addEventListener("keydown", onKeyDown);
-      form.querySelector("input").focus();
-    }
-
-    function close() {
-      overlay.hidden = true;
-      document.body.classList.remove("modal-open");
-      document.removeEventListener("keydown", onKeyDown);
-      if (lastFocused) lastFocused.focus();
-    }
-
-    openBtn.addEventListener("click", open);
-    overlay.querySelector("[data-login-close]").addEventListener("click", close);
-    overlay.addEventListener("click", function (e) {
-      if (e.target === overlay) close();
-    });
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      form.hidden = true;
-      success.hidden = false;
-      overlay.querySelector("[data-login-close]").focus();
-    });
-  }
-
-  /* ---------- ფორმის ველების "შეხების" მონიშვნა ----------
-     წითელი ჩარჩო მხოლოდ მაშინ ჩანს, როცა მომხმარებელმა ველი დატოვა */
   function initTouchedFields() {
     document.addEventListener("focusout", function (e) {
       if (e.target.matches(".form-input, .form-select")) e.target.classList.add("is-touched");
     });
   }
 
-  /* ---------- გაშვება ---------- */
   function init() {
+    renderLayout();
     applyTheme();
     applyTranslations();
     startClock();
     initBurger();
     markCurrentLink();
-    initLoginModal();
     initTouchedFields();
 
     const langBtn = document.querySelector("[data-lang-toggle]");
@@ -238,7 +194,6 @@ const NJ = (function () {
     if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
   }
 
-  // გვერდის სკრიპტებისთვის საჯარო ფუნქციები
   return {
     init: init,
     t: t,
@@ -251,6 +206,4 @@ const NJ = (function () {
   };
 })();
 
-// სკრიპტები defer-ით იტვირთება, ამიტომ გვერდის სკრიპტები (home.js, jobs.js...)
-// თავიანთ nj:langchange მსმენელებს DOMContentLoaded-მდე არეგისტრირებენ.
 document.addEventListener("DOMContentLoaded", NJ.init);

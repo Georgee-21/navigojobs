@@ -1,9 +1,3 @@
-/* =========================================================
-   ვაკანსიების გვერდი — ძებნა, დეპარტამენტის ფილტრი,
-   ბარათების აწყობა. ფილტრი ინახება URL-ში (?dept=DK), ასე რომ
-   მთავარი გვერდის დეპარტამენტის ბარათიდან პირდაპირ გაფილტრული სია იხსნება.
-   ========================================================= */
-
 (function () {
   "use strict";
 
@@ -18,7 +12,6 @@
   let activeDept = validCodes.indexOf(params.get("dept")) !== -1 ? params.get("dept") : "ALL";
   let query = "";
 
-  /* ---------- ფილტრის ღილაკები ---------- */
   function renderFilters() {
     const chips = [{ code: "ALL", label: NJ.t("jobsPage.allDepartments") }].concat(
       departments.map(function (d) { return { code: d.code, label: d.code }; })
@@ -27,7 +20,7 @@
     filtersEl.innerHTML = chips
       .map(function (c) {
         return (
-          '<button type="button" class="filter-btn" data-dept="' + c.code + '" aria-pressed="' +
+          '<button type="button" class="filter-btn" data-dept="' + NJ.escapeHtml(c.code) + '" aria-pressed="' +
           (c.code === activeDept) + '">' + NJ.escapeHtml(c.label) + "</button>"
         );
       })
@@ -47,7 +40,6 @@
     renderJobs();
   }
 
-  /* ---------- ფილტრაცია ---------- */
   function getFilteredJobs() {
     const lang = NJ.getLang();
     const q = query.trim().toLowerCase();
@@ -62,7 +54,6 @@
     });
   }
 
-  /* ---------- ერთი ვაკანსიის ბარათი ---------- */
   function jobCard(job) {
     const lang = NJ.getLang();
     const p = translations[lang].jobsPage;
@@ -71,8 +62,8 @@
 
     return (
       '<li class="job-card">' +
-      '<div class="job-image" style="background-image:url(\'' + job.image + '\')">' +
-      '<span class="dept-code">' + job.dept + "</span>" +
+      '<div class="job-image" style="background-image:url(\'' + esc(job.image) + '\')">' +
+      '<span class="dept-code">' + esc(job.dept) + "</span>" +
       (job.urgent ? '<span class="job-urgent text-mono">' + p.urgentBadge + "</span>" : "") +
       "</div>" +
       '<h3 class="job-title">' + esc(job.rank[lang]) + "</h3>" +
@@ -81,11 +72,11 @@
       '<dl class="job-details">' +
       "<div><dt>" + p.zoneLabel + "</dt><dd>" + esc(job.zone[lang]) + "</dd></div>" +
       "<div><dt>" + p.contractLabel + "</dt><dd>" + esc(job.contract[lang]) + "</dd></div>" +
-      "<div><dt>" + p.salaryLabel + '</dt><dd class="text-mono">' + job.salary + p.perMonth + "</dd></div>" +
+      "<div><dt>" + p.salaryLabel + '</dt><dd class="text-mono">' + esc(job.salary) + p.perMonth + "</dd></div>" +
       "</dl>" +
       '<div class="job-footer">' +
       '<span class="job-date text-mono">' + posted + "</span>" +
-      '<a class="btn-primary job-apply" href="register-seafarer.html?job=' + job.id + '">' +
+      '<a class="btn-primary job-apply" href="register-seafarer.html?job=' + encodeURIComponent(job.id) + '">' +
       p.applyBtn + "</a>" +
       "</div>" +
       "</li>"
@@ -100,7 +91,6 @@
     emptyEl.hidden = list.length !== 0;
   }
 
-  /* ---------- მოვლენები ---------- */
   searchInput.addEventListener("input", function () {
     query = searchInput.value;
     renderJobs();

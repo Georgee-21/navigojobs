@@ -1,7 +1,3 @@
-/* =========================================================
-   კონტაქტის გვერდი
-   ========================================================= */
-
 .contact-section { padding-top: 56px; }
 
 .contact-grid {
@@ -9,7 +5,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 48px;
-  font-style: normal; /* <address> ელემენტის ნაგულისხმევი დახრის მოხსნა */
+  font-style: normal;
 }
 
 .contact-card {

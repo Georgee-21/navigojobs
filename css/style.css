@@ -1,10 +1,3 @@
-/* =========================================================
-   NavigoJobs — გლობალური სტილები
-   (თემის ცვლადები, ტიპოგრაფია, ღილაკები, საერთო ბლოკები:
-   კონსოლის ზოლი, ნავიგაცია, შესვლის ფანჯარა, გვერდის ჰერო, ფუტერი)
-   ========================================================= */
-
-/* ---------- Theme tokens (კლასი <html>-ზე: theme-dark / theme-light) ---------- */
 .theme-dark {
   --bg: #0a1929;
   --panel: #102538;
@@ -37,7 +30,6 @@
   color-scheme: light;
 }
 
-/* ---------- Reset & root ---------- */
 *,
 *::before,
 *::after {
@@ -83,7 +75,6 @@ video {
   white-space: nowrap;
 }
 
-/* "მთავარ შინაარსზე გადასვლა" — ჩანს მხოლოდ კლავიატურით ფოკუსისას */
 .skip-link {
   position: absolute;
   left: 16px;
@@ -98,11 +89,9 @@ video {
 }
 .skip-link:focus { top: 12px; }
 
-/* ---------- Shared typography ---------- */
 .text-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
 .text-display { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
 
-/* ---------- Shared section scaffolding ---------- */
 .section { padding: 90px 32px; max-width: 1180px; margin: 0 auto; }
 .section-no-top { padding-top: 0; }
 .section-header { margin-bottom: 56px; max-width: 560px; }
@@ -137,7 +126,6 @@ video {
   margin: 0 0 32px;
 }
 
-/* მინის ეფექტის პანელი (ჰერო, დამსაქმებლის ზოლი, ქვეგვერდების ჰერო) */
 .glass-panel {
   border-radius: 20px;
   border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
@@ -147,7 +135,6 @@ video {
   box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.55);
 }
 
-/* დეპარტამენტის კოდი (მთავარი გვერდი + ვაკანსიები) */
 .dept-code {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
@@ -159,7 +146,6 @@ video {
   margin-bottom: 16px;
 }
 
-/* ---------- Shared buttons ---------- */
 .btn-primary,
 .btn-secondary {
   padding: 14px 24px;
@@ -194,20 +180,6 @@ video {
 
 .btn-full { width: 100%; }
 
-.btn-login {
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  padding: 9px 18px;
-  border-radius: 3px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: border-color 0.2s;
-  font-family: 'Inter', sans-serif;
-}
-.btn-login:hover { border-color: var(--accent); }
-
-/* ---------- Console bar ---------- */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -239,7 +211,6 @@ video {
   50% { opacity: 0.3; }
 }
 
-/* ---------- Navbar ---------- */
 .navbar {
   position: relative;
   display: flex;
@@ -342,53 +313,6 @@ video {
 .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-/* ---------- Login modal ---------- */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  z-index: 100;
-}
-
-.modal {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 40px 32px 32px;
-}
-
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  color: var(--ink);
-  font-size: 18px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 0.2s;
-}
-
-.modal-close:hover { border-color: var(--accent); }
-.modal-title { margin-bottom: 20px; }
-
-body.modal-open { overflow: hidden; }
-
-/* ---------- Page hero (ქვეგვერდები) ---------- */
 .page-hero {
   position: relative;
   overflow: hidden;
@@ -448,7 +372,6 @@ body.modal-open { overflow: hidden; }
 
 .back-link:hover { color: var(--accent); }
 
-/* ---------- Success message (ფორმები, შესვლა) ---------- */
 .form-success {
   max-width: 560px;
   margin: 0 auto;
@@ -458,8 +381,6 @@ body.modal-open { overflow: hidden; }
   padding: 40px 32px;
   text-align: center;
 }
-
-.modal .form-success { border: none; padding: 8px 0 0; }
 
 .form-success-icon {
   font-size: 32px;
@@ -472,8 +393,6 @@ body.modal-open { overflow: hidden; }
   font-weight: 600;
   margin-bottom: 8px;
 }
-
-/* ---------- Forms (ფორმის გვერდები + შესვლის ფანჯარა) ---------- */
 
 .form-section {
   padding-top: 56px;
@@ -533,7 +452,6 @@ body.modal-open { overflow: hidden; }
   border-color: var(--accent);
 }
 
-/* ვალიდაციის შეცდომა — ჩანს მხოლოდ მას შემდეგ, რაც მომხმარებელი ველს შეეხება */
 .form-input.is-touched:invalid,
 .form-select.is-touched:invalid {
   border-color: var(--danger);
@@ -546,12 +464,35 @@ body.modal-open { overflow: hidden; }
 
 .form-buttons { margin-top: 8px; }
 
+.form-honeypot { position: absolute; left: -9999px; }
+
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--steel);
+  line-height: 1.5;
+}
+
+.form-consent input { margin: 3px 0 0; accent-color: var(--accent); }
+.form-consent a { color: var(--accent); }
+
+.form-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-page { max-width: 760px; }
+.text-page h2 { font-size: 20px; font-weight: 600; margin: 32px 0 8px; }
+
 @media (max-width: 640px) {
   .form-row { grid-template-columns: 1fr; }
   .form-section { padding-top: 40px; padding-bottom: 64px; }
 }
 
-/* ---------- Footer ---------- */
 .footer {
   padding: 40px 32px;
   display: flex;
@@ -581,7 +522,6 @@ body.modal-open { overflow: hidden; }
 
 .footer-links a:hover { color: var(--accent); }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .topbar {
     flex-direction: column;
@@ -637,7 +577,6 @@ body.modal-open { overflow: hidden; }
   .logo { font-size: 17px; }
   .navbar-right { gap: 8px; }
   .navbar-actions { gap: 6px; }
-  .navbar .btn-login { padding: 8px 10px; font-size: 13px; }
 
   .footer {
     flex-direction: column;

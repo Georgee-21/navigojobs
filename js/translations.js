@@ -1,12 +1,8 @@
-/* =========================================================
-   NavigoJobs — თარგმანები (ქართული / English)
-   HTML-ში ელემენტს აქვს data-i18n="სექცია.გასაღები" ატრიბუტი,
-   main.js კი ამ ობიექტიდან სვამს შესაბამის ტექსტს.
-   ========================================================= */
-
 const translations = {
   ka: {
     meta: {
+      privacy: "კონფიდენციალურობა — NavigoJobs",
+      notFound: "გვერდი ვერ მოიძებნა — NavigoJobs",
       home: "NavigoJobs — საზღვაო კარიერის პლატფორმა",
       jobs: "ვაკანსიები — NavigoJobs",
       contact: "კონტაქტი — NavigoJobs",
@@ -15,6 +11,11 @@ const translations = {
       company: "კომპანიის რეგისტრაცია — NavigoJobs",
     },
     ui: {
+      consentLabel: "ვეთანხმები ჩემი მონაცემების დამუშავებას:",
+      consentLink: "კონფიდენციალურობის პოლიტიკა",
+      formSending: "იგზავნება...",
+      formNotConfigured: "ფორმის გაგზავნა ჯერ არ არის ჩართული. გთხოვთ, დაგვიკავშირდეთ კონტაქტის გვერდიდან.",
+      formError: "გაგზავნა ვერ მოხერხდა. შეამოწმე ინტერნეტი და სცადე თავიდან.",
       themeToggle: "თემის გადართვა",
       langToggle: "ენის შეცვლა",
       skipLink: "მთავარ შინაარსზე გადასვლა",
@@ -22,7 +23,7 @@ const translations = {
     },
     consoleBar: {
       location: "41.6168°N 41.6367°E — ბათუმის ნავსადგური",
-      stats: "აქტიური ეკიპაჟი: 1,204 · ღია ვაკანსია: 87",
+      stats: "აქტიური ეკიპაჟი: 1,204 · ღია ვაკანსია: {open}",
     },
     nav: {
       links: [
@@ -31,7 +32,6 @@ const translations = {
         { key: "how", label: "როგორ მუშაობს" },
         { key: "contact", label: "კონტაქტი" },
       ],
-      login: "შესვლა",
       menuLabel: "მენიუს გახსნა",
     },
     hero: {
@@ -44,7 +44,7 @@ const translations = {
       ctaSecondary: "ვაკანსიის განთავსება",
       stats: [
         { num: "1,204", label: "აქტიური მეზღვაური" },
-        { num: "87", label: "ღია ვაკანსია" },
+        { label: "ღია ვაკანსია" },
         { num: "34", label: "ვერიფიც. სააგენტო" },
       ],
     },
@@ -158,24 +158,32 @@ const translations = {
       successTitle: "მადლობა რეგისტრაციისთვის!",
       successMsg: "თქვენი განაცხადი მიღებულია — ჩვენი გუნდი დაგიკავშირდებათ მალე.",
     },
-    loginModal: {
-      kicker: "// შესვლა სისტემაში",
-      title: "შესვლა",
-      closeLabel: "დახურვა",
-      fields: {
-        email: "ელ. ფოსტა",
-        password: "პაროლი",
-      },
-      submitBtn: "შესვლა",
-      successTitle: "წარმატებით შეხვედი!",
-      successMsg: "მოგესალმები — შენი სესია აქტიურია.",
+    privacyPage: {
+      kicker: "// პერსონალური მონაცემები",
+      title: "კონფიდენციალურობის პოლიტიკა",
+      sections: [
+        { title: "რა მონაცემებს ვაგროვებთ", text: "ფორმებში შეყვანილ ინფორმაციას: სახელს, ელ. ფოსტას, ტელეფონს, რანგს, გამოცდილებას, სერტიფიკატებს და კომპანიის ან ვაკანსიის მონაცემებს." },
+        { title: "რისთვის ვიყენებთ", text: "განაცხადის განსახილველად, შენთან დასაკავშირებლად და მეზღვაურებისა და დამსაქმებლების ერთმანეთთან დასაკავშირებლად." },
+        { title: "ვის ვუზიარებთ", text: "მონაცემები გადაიცემა ფორმების გაგზავნის სერვისს და, საჭიროების შემთხვევაში, დამსაქმებლებს. მონაცემებს არ ვყიდით." },
+        { title: "ბრაუზერში შენახული პარამეტრები", text: "არჩეული ენა და თემა ინახება შენს ბრაუზერში (localStorage) და სერვერზე არ იგზავნება." },
+        { title: "შენი უფლებები", text: "შეგიძლია მოითხოვო შენი მონაცემების ნახვა, შესწორება ან წაშლა. მოგვწერე: info@navigojobs.ge" },
+      ],
+    },
+    notFoundPage: {
+      kicker: "// 404",
+      title: "გვერდი ვერ მოიძებნა",
+      sub: "ეს მისამართი არ არსებობს ან გადატანილია.",
+      cta: "მთავარ გვერდზე დაბრუნება",
     },
     footer: {
+      privacy: "კონფიდენციალურობა",
       copy: "© 2026 · ბათუმი, საქართველო",
     },
   },
   en: {
     meta: {
+      privacy: "Privacy — NavigoJobs",
+      notFound: "Page not found — NavigoJobs",
       home: "NavigoJobs — Maritime Career Platform",
       jobs: "Jobs — NavigoJobs",
       contact: "Contact — NavigoJobs",
@@ -184,6 +192,11 @@ const translations = {
       company: "Register Company — NavigoJobs",
     },
     ui: {
+      consentLabel: "I agree to the processing of my data:",
+      consentLink: "Privacy Policy",
+      formSending: "Sending...",
+      formNotConfigured: "Form submission is not enabled yet. Please reach us through the contact page.",
+      formError: "Sending failed. Check your connection and try again.",
       themeToggle: "Toggle theme",
       langToggle: "Switch language",
       skipLink: "Skip to main content",
@@ -191,7 +204,7 @@ const translations = {
     },
     consoleBar: {
       location: "41.6168°N 41.6367°E — Port of Batumi",
-      stats: "Active crew: 1,204 · Open positions: 87",
+      stats: "Active crew: 1,204 · Open positions: {open}",
     },
     nav: {
       links: [
@@ -200,7 +213,6 @@ const translations = {
         { key: "how", label: "How It Works" },
         { key: "contact", label: "Contact" },
       ],
-      login: "Log In",
       menuLabel: "Open menu",
     },
     hero: {
@@ -213,7 +225,7 @@ const translations = {
       ctaSecondary: "Post a Job",
       stats: [
         { num: "1,204", label: "Active Seafarers" },
-        { num: "87", label: "Open Positions" },
+        { label: "Open Positions" },
         { num: "34", label: "Verified Agencies" },
       ],
     },
@@ -327,19 +339,25 @@ const translations = {
       successTitle: "Thanks for registering!",
       successMsg: "Your application has been received — our team will contact you shortly.",
     },
-    loginModal: {
-      kicker: "// Sign in to your account",
-      title: "Log In",
-      closeLabel: "Close",
-      fields: {
-        email: "Email",
-        password: "Password",
-      },
-      submitBtn: "Log In",
-      successTitle: "Signed in!",
-      successMsg: "Welcome back — your session is active.",
+    privacyPage: {
+      kicker: "// Personal data",
+      title: "Privacy Policy",
+      sections: [
+        { title: "What we collect", text: "The information you enter in our forms: name, email, phone, rank, experience, certificates, and company or vacancy details." },
+        { title: "How we use it", text: "To review applications, contact you, and connect seafarers with employers." },
+        { title: "Who we share it with", text: "Data is passed to our form submission service and, where needed, to employers. We do not sell your data." },
+        { title: "Settings stored in your browser", text: "Your language and theme choices are stored in your browser (localStorage) and are not sent to a server." },
+        { title: "Your rights", text: "You can ask to see, correct, or delete your data. Write to us: info@navigojobs.ge" },
+      ],
+    },
+    notFoundPage: {
+      kicker: "// 404",
+      title: "Page not found",
+      sub: "This address does not exist or has moved.",
+      cta: "Back to home",
     },
     footer: {
+      privacy: "Privacy",
       copy: "© 2026 · Batumi, Georgia",
     },
   },

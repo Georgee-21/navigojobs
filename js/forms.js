@@ -1,27 +1,61 @@
-/* =========================================================
-   ფორმის გვერდები — მეზღვაურის რეგისტრაცია, ვაკანსიის
-   განთავსება, კომპანიის რეგისტრაცია.
-   სერვერი ჯერ არ არის, ამიტომ წარდგენისას ფორმა იმალება და
-   ჩანს მადლობის შეტყობინება (როგორც React ვერსიაში).
-   ========================================================= */
-
 (function () {
   "use strict";
+
+  const FORM_ENDPOINT = "https://formspree.io/f/xyeeddzr";
 
   const form = document.querySelector("[data-nj-form]");
   const success = document.querySelector("[data-success]");
   if (!form || !success) return;
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    // required/type="email" ველებს ბრაუზერი თავად ამოწმებს — აქ მხოლოდ ვალიდური ფორმა მოდის
+  const errorEl = form.querySelector("[data-form-error]");
+  const submitBtn = form.querySelector('[type="submit"]');
+
+  function showError(key) {
+    errorEl.dataset.i18n = "ui." + key;
+    errorEl.textContent = NJ.t("ui." + key);
+    errorEl.hidden = false;
+  }
+
+  function showSuccess() {
     form.hidden = true;
     success.hidden = false;
     success.focus();
     success.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    errorEl.hidden = true;
+    if (!FORM_ENDPOINT) {
+      showError("formNotConfigured");
+      return;
+    }
+
+    const data = new FormData(form);
+    data.append("formType", document.body.dataset.page);
+    if (job) data.append("job", job.id);
+
+    const label = submitBtn.dataset.i18n;
+    submitBtn.disabled = true;
+    submitBtn.removeAttribute("data-i18n");
+    submitBtn.textContent = NJ.t("ui.formSending");
+
+    fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        showSuccess();
+      })
+      .catch(function () {
+        showError("formError");
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.dataset.i18n = label;
+        submitBtn.textContent = NJ.t(label);
+      });
   });
 
-  /* ---------- დეპარტამენტის ჩამოსაშლელი სია (ვაკანსიის განთავსება) ---------- */
   const deptSelect = document.getElementById("pj-department");
 
   function renderDeptOptions() {
@@ -32,14 +66,12 @@
       '<option value="" disabled>' + NJ.t("ui.selectPlaceholder") + "</option>" +
       departments
         .map(function (d) {
-          return '<option value="' + d.code + '">' + NJ.escapeHtml(d.name[lang]) + "</option>";
+          return '<option value="' + NJ.escapeHtml(d.code) + '">' + NJ.escapeHtml(d.name[lang]) + "</option>";
         })
         .join("");
-    deptSelect.value = selected; // ენის შეცვლისას არჩეული მნიშვნელობა რჩება
+    deptSelect.value = selected;
   }
 
-  /* ---------- "განაცხადის გაგზავნა" ვაკანსიიდან ----------
-     register-seafarer.html?job=dk-101 → რანგის და გემის ველები ივსება */
   const jobId = new URLSearchParams(location.search).get("job");
   const job = jobId ? jobs.find(function (j) { return j.id === jobId; }) : null;
   let prefilled = false;
